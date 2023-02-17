@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DownloadedNews index{% endblock %}
+
+{% block body %}
+     <div class="container">
+           <div class="row">
+               <div class="col-md-8 offset-md-2 ">
+                 <h3 class="mt-2">All Downloaded News Highlights</h3>
+                 <a href="{{ path('app_downloaded_news_new') }}">Fetch Today's Highlights</a>
+                
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>SN</th>
+                                <th>Title</th>
+                                <th>Short description</th>
+                                <th>Picture path</th>
+                                <th>Date created</th>
+                                <th>Last Updated</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for each_news in downloaded_news %}
+                            <tr>
+                                <td>{{ each_news.id }}</td>
+                                <td>{{ each_news.title }}</td>
+                                <td>{{ each_news.shortDescription }}</td>
+                                <td>{{ each_news.picturePath }}</td>
+                                <td>{{ each_news.created_at }}</td>
+                                <td>{{ each_news.updated_at }}</td>
+                                <td>
+                                    <a href="{{ path('app_each_news_show', {'id': each_news.id}) }}">show</a>
+                                    <a href="{{ path('app_each_news_edit', {'id': each_news.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
+               </div>
+           </div>
+     </div>
+{% endblock %}

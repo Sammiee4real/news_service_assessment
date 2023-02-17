@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DownloadedNews{% endblock %}
+
+{% block body %}
+    <h1>Edit DownloadedNews</h1>
+
+    {{ include('downloaded_news/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_downloaded_news_index') }}">back to list</a>
+
+    {{ include('downloaded_news/_delete_form.html.twig') }}
+{% endblock %}

@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\NewsServiceRepository;
+use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\NewsServiceRepository;
 
 #[ORM\Entity(repositoryClass: NewsServiceRepository::class)]
 class NewsService
@@ -20,8 +21,8 @@ class NewsService
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $news_date = null;
+    #[ORM\Column(length: 255)]
+    private ?string $news_date = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $download_status = null;
@@ -55,12 +56,12 @@ class NewsService
         return $this;
     }
 
-    public function getNewsDate(): ?\DateTimeInterface
+    public function getNewsDate(): ?string
     {
         return $this->news_date;
     }
 
-    public function setNewsDate(\DateTimeInterface $news_date): self
+    public function setNewsDate(string $news_date): self
     {
         $this->news_date = $news_date;
 
